@@ -3,21 +3,21 @@
 /*function signature/sample */
 function calculateTax(income, expenses) {
   if (
-    (typeof income !== "number" && typeof expenses !== "number") ||
+    typeof income !== "number" ||
+    typeof expenses !== "number" ||
     expenses > income ||
     expenses < 0 ||
     income < 0
   ) {
     return "Invalid Input";
   }
-  const diff = income - expenses;
-  let tax = (diff * 20) / 100;
+  const tax = (income - expenses) * .20;
   return tax;
 }
 
 // Test 1
-// const result = calculateTax(34000, 1753);
-// console.log(result);
+const result = calculateTax(5000, 1500);
+console.log(result);
 
 // Problem 2
 /*function signature/sample */
@@ -58,11 +58,60 @@ function checkDigitsInName(name) {
 
 // Problem 4
 
+function calculateFinalScore(obj) {
+  if (typeof obj !== "object") {
+    return "Invalid Input";
+  }
+
+  let totalMarks = obj.testScore + obj.schoolGrade;
+
+  if (obj.isFFamily) {
+    totalMarks = totalMarks + 20;
+  }
+
+  if (totalMarks >= 80) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const person = {
+  name: "Rajib",
+  testScore: 45,
+  schoolGrade: 25,
+  isFFamily: true,
+};
+console.log(calculateFinalScore(person));
+
+const person2 = {
+  name: "Rajib",
+  testScore: 45,
+  schoolGrade: 25,
+  isFFamily: false,
+};
+console.log(calculateFinalScore(person2));
+
+const person3 = "hello";
+
+console.log(calculateFinalScore(person3));
+
+const person4 = {
+  name: "Rajib",
+  testScore: 15,
+  schoolGrade: 25,
+  isFFamily: true,
+};
+console.log(calculateFinalScore(person4));
+
 // problem 5
 
 /*function signature/sample */
 function waitingTime(waitingTimes, serialNumber) {
-  if (Array.isArray(waitingTimes) === false || typeof serialNumber !== 'number') {
+  if (
+    Array.isArray(waitingTimes) === false ||
+    typeof serialNumber !== "number"
+  ) {
     return "Invalid Input";
   }
 
@@ -72,30 +121,11 @@ function waitingTime(waitingTimes, serialNumber) {
   for (const time of waitingTimes) {
     sum = sum + time;
     avg = Math.round(sum / waitingTimes.length);
-  totalWaiting = avg * ((serialNumber - 1) - waitingTimes.length);
+    totalWaiting = avg * (serialNumber - 1 - waitingTimes.length);
   }
   return totalWaiting;
 }
 
 // Sample Inputs and Outputs
 // const time = waitingTime([ 3, 5, 7, 11, 6 ], 10);
-// console.log(time); 
-
-// const time2 = waitingTime([13, 2], 6);
-// console.log(time2); 
-
-// const time3 = waitingTime([13, 2, 6, 7, 10], 6);
-// console.log(time3); 
-
-// const time4 = waitingTime([6], 4);
-// console.log(time4); 
-
-// const time5 = waitingTime(7 , 10);
-// console.log(time5); 
-
-// const time6 = waitingTime("[6,2]", 9);
-// console.log(time6); 
-
-// const time7 = waitingTime([7, 8, 3, 4, 5], "9");
-// console.log(time7); 
-
+// console.log(time);
